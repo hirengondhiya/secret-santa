@@ -4,9 +4,9 @@ require "colorize"
 $participants = {
     "louise" => {
         is_santa_for: "",
+        is_santa: false,        
         my_santa_is: "",
-        is_picked_by_santa: false,
-        is_santa: false        
+        is_picked_by_santa: false
     },
     "ignacio" => {
         is_santa_for: "",
