@@ -87,12 +87,12 @@ end
 
 def get_santa_name
     current_santa_name = ""
-    # Display list of the participants and allow user to identify who s/he is?
+    # Display list of the participants who have not played so far and allow the current user to identify who s/he is?
     # Store the user selection into the variable current_santa_name
     return current_santa_name
 end
 
-def match_random_person_for current_santa_name
+def match_random_person_for(current_santa_name)
     # get user properties for current_santa_name
     # check if current sant is already matched with another participant
     # if yes 
