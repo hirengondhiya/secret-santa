@@ -93,7 +93,15 @@ def get_santa_name
     # Display list of the participants and allow user to identify who s/he is?
     prompt = TTY::Prompt.new
     # Store the user selection into the variable current_santa_name
-    current_santa_name = prompt.select("Choose the name", $participants.keys)
+    current_santa_name_colored = prompt.select("Choose the name", $participants.keys.map { |name| $participants[name][:is_santa]? name.capitalize.red : name.capitalize.green })
+    current_santa_name_colored = current_santa_name_colored.downcase
+    current_santa_name = ""
+    for name in $participants.keys
+        if current_santa_name_colored.include?(name)
+            current_santa_name = name;
+            break;
+        end
+    end
     return current_santa_name
 end
 
@@ -122,7 +130,7 @@ end
 def display random_match_name, delay
     # display name of the person on screen in big letters using artii
     a = Artii::Base.new
-    puts a.asciify(random_match_name).green.on_black
+    puts a.asciify(random_match_name.capitalize).green.on_black
     # sleep for 15 seconds
     # sleep 15
     print "." * delay
@@ -183,7 +191,7 @@ def game_play
         matched_random_person = match_random_person_for current_santa_name
         update_properties current_santa_name, matched_random_person
         add_to_file current_santa_name, matched_random_person
-        display matched_random_person,5
+        display matched_random_person,10
     end
 end
 
